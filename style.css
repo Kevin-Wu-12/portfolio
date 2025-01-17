@@ -30,22 +30,42 @@ body {
     }
 
     :root {
-      --color-accent: oklch(65% 50% 0);
-      --color-accent-light: oklch(95% 5% 0); 
+      --color-accent: oklch(65% 50% 0); 
     }
 
-    
-
-    a:hover {
-      border-bottom-width: 0.4em;
-      border-bottom-color: var(--color-accent);
-      background-color: var(--color-accent-light);
+    body {
+      accent-color: var(--color-accent);
     }
-    
+
+    nav a:hover {
+      border-bottom: 2px solid var(--color-accent); 
+    }
+
     label {
       display: grid;
       grid-template-columns: subgrid;
       grid-column: 1 / -1;
       gap: 1em;
     }
+
+  .projects{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
+    gap: 10px
   }
+
+  article {
+    display: grid;
+    grid-template-rows: subgrid;
+    grid-row: span 3;
+    gap: 1em
+  }
+
+ 
+  h1, h2, h3, h4, h5, h6 {
+    line-height: 1.1; 
+    text-wrap: balance;
+    margin-top: 0;
+    margin-bottom: 0.5em; 
+  }
+}
