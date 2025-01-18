@@ -32,6 +32,10 @@ body {
     :root {
       --color-accent: oklch(65% 50% 0); 
     }
+    html {
+      --color-accent: oklch(65% 50% 0); 
+    }
+
 
     body {
       accent-color: var(--color-accent);
@@ -55,6 +59,8 @@ body {
     grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
     gap: 10px
   }
+
+  . {}
 
   article {
     display: grid;
