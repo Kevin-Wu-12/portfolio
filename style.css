@@ -31,15 +31,24 @@ body {
 
     :root {
       --color-accent: oklch(65% 50% 0); 
+      color-scheme: dark;
     }
     html {
-      --color-accent: oklch(65% 50% 0); 
+      --color-accent: oklch(65% 50% 0);
+      color-scheme: dark;
     }
 
-
-    body {
-      accent-color: var(--color-accent);
+    nav {
+      --border-color: oklch(50% 10% 200 / 40%);
+      border-bottom-color: var(--border-color);
+      background-color: color-mix(in oklch, var(--color-accent), canvas 85%);
     }
+
+    
+    background-color: #121212; /* Dark background */
+    color: #ffffff;           /* Light text */
+    
+    
 
     nav a:hover {
       border-bottom: 0.4em solid oklch(65% 50% 29.5);
@@ -60,7 +69,6 @@ body {
     gap: 10px
   }
 
-  . {}
 
   article {
     display: grid;
@@ -94,5 +102,6 @@ body {
     margin: 1em 0;
     padding: 0;
 }
+
   
 }

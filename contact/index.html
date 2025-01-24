@@ -1,30 +1,28 @@
-<title>My Contacts</title>
+<body>
+    <title>My Contacts</title>
 
+    <link rel="stylesheet" href="../style.css">
 
-<link rel="stylesheet" href="../style.css">
+    
 
-<nav style="display: flex;">
-    <a href="../index.html">Homepage</a> 
-    <a href="../projects/index.html">Projects</a> 
-    <a href="../contact/index.html" class="current">Contacts</a> 
-    <a href="../resume/index.html">Resume</a> 
-    <a href="https://github.com/Kevin-Wu-12" target="_blank">Github Link</a>
-</nav>
+    <h1>Contact Me</h1>
 
-<h1>Contact Me</h1>
+    <form action="mailto:kewu1227@gmail.com" method="POST" enctype="text/plain">
+        <label>
+            E-Mail:
+            <input name="email" type="email">
+        </label>
+        <label>
+            Subject:
+            <input name="subject">
+        </label>
+        <label>
+            Body:
+            <textarea name="body"></textarea>
+        <button>Submit</button>
+        </label>
+    </form>
 
-<form action="mailto:kewu1227@gmail.com" method="POST" enctype="text/plain">
-    <label>
-        E-Mail:
-        <input name="email" type="email">
-    </label>
-    <label>
-        Subject:
-        <input name="subject">
-    </label>
-    <label>
-        Body:
-        <textarea name="body"></textarea>
-    <button>Submit</button>
-    </label>
-</form>
+    
+    <script type="module" src="../global.js"></script>
+</body>
