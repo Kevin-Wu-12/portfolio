@@ -1,107 +1,101 @@
 body {
-    /* Set line height to 1.5 times the font size
-         and use the OS’s UI font as the website font
-       */
-    font: 100%/1.5 system-ui;
-
-    max-width: 100ch;
-
-    margin-inline: max(1em, (100% - 100ch) / 2);
-
-
-    nav {
-      display: flex;
-    }
-    
-    nav a {
-      flex: 1;
-      text-decoration: none;
-      color: inherit;
-      text-align: center;
-      padding: 0.5em;
-      margin-bottom: 1;
-      border-bottom: solid oklch(80% 3% 200) 1px;
-      padding-bottom: 0;
-    }
-
-    a.current {
-      border-bottom-width: 0.4em;
-      border-bottom-color: oklch(85% 3% 200);
-    }
-
-    :root {
-      --color-accent: oklch(65% 50% 0); 
-      color-scheme: dark;
-    }
-    html {
-      --color-accent: oklch(65% 50% 0);
-      color-scheme: dark;
-    }
-
-    nav {
-      --border-color: oklch(50% 10% 200 / 40%);
-      border-bottom-color: var(--border-color);
-      background-color: color-mix(in oklch, var(--color-accent), canvas 85%);
-    }
-
-    
-    background-color: #121212; /* Dark background */
-    color: #ffffff;           /* Light text */
-    
-    
-
-    nav a:hover {
-      border-bottom: 0.4em solid oklch(65% 50% 29.5);
-      background-color: oklch(95% 50% 29.5);
-    }
-    
-
-    label {
-      display: grid;
-      grid-template-columns: subgrid;
-      grid-column: 1 / -1;
-      gap: 1em;
-    }
-
-  .projects{
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
-    gap: 10px
-  }
-
-
-  article {
-    display: grid;
-    grid-template-rows: subgrid;
-    grid-row: span 3;
-    gap: 1em
-  }
-
- 
-  h1, h2, h3, h4, h5, h6 {
-    line-height: 1.1; 
-    text-wrap: balance;
-    margin-top: 0;
-    margin-bottom: 0.5em;
   
+  font: 100%/1.5 system-ui;
+  max-width: 100ch;
+  margin-inline: max(1em, (100% - 100ch) / 2);
+
+  nav {
+    display: flex;
   }
 
-  p {
-    margin-inline: max(1em, (100% - 100ch) / 2);
+  nav a {
+    flex: 1;
+    text-decoration: none;
+    color: inherit;
+    text-align: center;
+    padding: 0.5em;
+    margin-bottom: 1;
+    border-bottom: solid oklch(80% 3% 200) 1px;
+    padding-bottom: 0;
   }
 
-  ul {
-    margin-inline: max(1em, (100% - 100ch) / 2);
+  a.current {
+    border-bottom-width: 0.4em;
+    border-bottom-color: oklch(85% 3% 200);
   }
 
-  hr {
-    display: block;
-    height: 1px;
-    border: 0;
-    border-top: 2px solid #ccc;
-    margin: 1em 0;
-    padding: 0;
+
+
+}
+:root {
+  --color-accent: oklch(95% 20% 29.5);
 }
 
+html {
+  --color-accent: oklch(95% 20% 29.5);
+}
+
+nav {
+  --border-color: oklch(50% 10% 200 / 40%);
   
 }
+
+nav a:hover {
+  border-bottom: 0.4em solid oklch(65% 50% 29.5);
+  background-color: color-mix(in oklch, var(--color-accent), canvas 85%);
+  
+}
+
+label {
+  display: grid;
+  grid-template-columns: subgrid;
+  grid-column: 1 / -1;
+  gap: 1em;
+}
+
+.projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
+  gap: 10px;
+}
+
+article {
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-row: span 3;
+  gap: 1em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.1;
+  text-wrap: balance;
+  margin-top: 0;
+  margin-bottom: 0.5em;
+}
+
+p, ul {
+  margin-inline: max(1em, (100% - 100ch) / 2);
+}
+
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 2px solid #ccc;
+  margin: 1em 0;
+  padding: 0;
+}
+
+.color-scheme {
+  position: absolute;
+  font-size: 80%;
+  top: 1rem;
+  right: 1rem;
+  font-family: inherit;
+  display: flex;
+  gap: 0.3rem; /* Adds space between the label and select */
+}
+
+
+
+

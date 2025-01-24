@@ -41,10 +41,33 @@ for (let p of pages) {
     a.href = url;
     a.textContent = title;
     nav.append(a);
-    
+
     if (a.host === location.host && a.pathname === location.pathname) {
         a.classList.add('current');
     }
   }
+
+  document.body.insertAdjacentHTML(
+    'afterbegin',
+    `
+      <label class="color-scheme">
+          Theme:
+          <select>
+            <option value="light dark">Automatic</option>
+            <option value="light">Light</option>
+            <option value="dark">Dark</option>
+          </select>
+      </label>`
+  );
+
+  matchMedia("(prefers-color-scheme: dark)").matches
+
+  const select = document.querySelector('select');
+
+  select.addEventListener('input', function (event) {
+    console.log('color scheme changed to', event.target.value);
+    document.documentElement.style.setProperty('color-scheme', event.target.value);
+  });
+
 
   
