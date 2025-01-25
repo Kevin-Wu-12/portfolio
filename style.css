@@ -27,11 +27,11 @@ body {
 
 }
 :root {
-  --color-accent: oklch(95% 20% 29.5);
+  --color-accent: oklch(65% 50% 0);
 }
 
 html {
-  --color-accent: oklch(95% 20% 29.5);
+  --color-accent: oklch(65% 50% 0);
 }
 
 nav {
@@ -40,7 +40,7 @@ nav {
 }
 
 nav a:hover {
-  border-bottom: 0.4em solid oklch(65% 50% 29.5);
+  border-bottom: 0.4em solid oklch(65% 50% 0);
   border-bottom-color: var(--border-color);
   background-color: color-mix(in oklch, var(--color-accent), canvas 85%);
   
