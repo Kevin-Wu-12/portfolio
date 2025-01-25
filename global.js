@@ -19,7 +19,8 @@ let pages = [
     { url: '', title: 'Home' },
     { url: 'projects/', title: 'Projects' },
     { url: 'resume/', title: 'Resume' },
-    { url: 'contact/', title: 'Contact' }
+    { url: 'contact/', title: 'Contact' },
+    { url: 'https://github.com/Kevin-Wu-12', title: 'Github Link' }
     // add the rest of your pages here
   ];
 
@@ -36,15 +37,23 @@ for (let p of pages) {
     if (!ARE_WE_HOME && !url.startsWith('http')) {
         url = '../' + url;
     }
+  
 
     let a = document.createElement('a');
     a.href = url;
     a.textContent = title;
+
+    if (p.url.startsWith('https')) {
+      a.target = '_blank';
+    }
+    
     nav.append(a);
 
     if (a.host === location.host && a.pathname === location.pathname) {
         a.classList.add('current');
     }
+
+    
   }
 
   document.body.insertAdjacentHTML(
@@ -63,11 +72,39 @@ for (let p of pages) {
   matchMedia("(prefers-color-scheme: dark)").matches
 
   const select = document.querySelector('select');
+  
+
+  if ("colorScheme" in localStorage) {
+    const savedScheme = localStorage.colorScheme;
+    document.documentElement.style.setProperty('color-scheme', savedScheme);  
+    select.value = savedScheme;
+  }
 
   select.addEventListener('input', function (event) {
     console.log('color scheme changed to', event.target.value);
     document.documentElement.style.setProperty('color-scheme', event.target.value);
+    localStorage.colorScheme = event.target.value
   });
 
 
+const form = document.querySelector('form');
+
+
+form?.addEventListener('submit', function(event) {
+  event.preventDefault();
+ 
+  const data = new FormData(form);
+  const url = new URL(form.action); 
+  const params = new URLSearchParams();
   
+
+  for (let [name, value] of data) {
+    params.append(name, encodeURIComponent(value)); 
+    console.log(name, encodeURIComponent(value));  
+  }
+
+
+  url.search = params.toString();
+
+  location.href = url;
+});
