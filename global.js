@@ -17,9 +17,9 @@ function $$(selector, context = document) {
 
 let pages = [
     { url: '', title: 'Home' },
-    { url: 'projects/index.html', title: 'Projects' },
-    { url: 'resume/index.html', title: 'Resume' },
-    { url: 'contact/index.html', title: 'Contact' },
+    { url: 'projects/', title: 'Projects' },
+    { url: 'resume/', title: 'Resume' },
+    { url: 'contact/', title: 'Contact' },
     { url: 'https://github.com/Kevin-Wu-12', title: 'Github Link' }
     // add the rest of your pages here
   ];
@@ -27,11 +27,12 @@ let pages = [
 let nav = document.createElement('nav');
 document.body.prepend(nav);
 
-const ARE_WE_HOME = document.documentElement.classList.contains('Home');
+
 
 for (let p of pages) {
     let url = p.url;
     let title = p.title;
+    const ARE_WE_HOME = document.documentElement.classList.contains('Home');
     // TODO create link and add it to nav
     // Create link and add it to nav
     if (!ARE_WE_HOME && !url.startsWith('http')) {
