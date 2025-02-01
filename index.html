@@ -6,31 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kevin Wu: Personal site and portfolio</title>
     <link rel="stylesheet" href="style.css">
-    <script type="module" src="global.js"></script>
-    <script type="module" src="index.js" defer></script>
 </head>
 
 <body>
 
     <h1>Kevin Wu</h1>
+    <div id="profile-stats" class="dropdown">
+        <h3>My GitHub Stats</h3>
+        <dl class="profile-grid">
+        </dl>
+    </div>
     <img src="images/bunny.jpg" alt="My bunny" width="400" height="400">
     <p>I like F1 and bunnies</p>
+    
+    <script type="module" src="index.js" defer></script>
+    <script type="module" src="global.js"></script>
 
-
-    <div id="profile-stats" class="dropdown">
-        <button class="dropdown-btn">Profile Stats</button>
-        <div class="dropdown-content">
-            <h3>GitHub Profile</h3>
-            <dl class="profile-grid">
-            </dl>
-        </div>
-    </div>
-
-    <h2>Latest Projects</h2>
+    <h1>Latest Projects</h1>
     <div class="projects">
         <!-- Dynamically added content will appear here -->
     </div>
 
 </body>
-
 </html>
