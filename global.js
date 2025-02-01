@@ -130,41 +130,39 @@ export async function fetchJSON(url) {
 }
 
 export function renderProjects(projects, containerElement, headingLevel = 'h2') {
-  // Ensure container exists
-  if (!containerElement) {
-      console.error('Container element not found.');
-      return;
-  }
+    // Ensure container exists
+    if (!containerElement) {
+        console.error('Container element not found.');
+        return;
+    }
 
-  // Clear existing content
-  containerElement.innerHTML = '';
+    // Clear existing content
+    containerElement.innerHTML = '';
 
-  // Validate headingLevel
-  const validHeadings = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
-  if (!validHeadings.includes(headingLevel)) {
-      console.error(`Invalid heading level: ${headingLevel}. Defaulting to h2.`);
-      headingLevel = 'h2';
-  }
+    // Validate headingLevel
+    const validHeadings = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
+    if (!validHeadings.includes(headingLevel)) {
+        console.error(`Invalid heading level: ${headingLevel}. Defaulting to h2.`);
+        headingLevel = 'h2';
+    }
 
-  // Ensure projects is an array
-  if (!Array.isArray(projects)) {
-      console.error('Expected an array of projects.');
-      return;
-  }
+    // Ensure projects is an array
+    if (!Array.isArray(projects)) {
+        console.error('Expected an array of projects.');
+        return;
+    }
 
-  // Iterate over projects and create elements
-  projects.forEach(project => {
-      const article = document.createElement('article');
-      article.innerHTML = `
-          <${headingLevel}>${project.title}</${headingLevel}>
-          <img src="${project.image || 'default-image.jpg'}" alt="${project.title}">
-          <p>${project.description}</p>
-      `;
-      containerElement.appendChild(article);
-  });
+    // Iterate over projects and create elements
+    projects.forEach(project => {
+        const article = document.createElement('article');
+        article.innerHTML = `
+            <${headingLevel}>${project.title}</${headingLevel}>
+            <img src="${project.image || 'default-image.jpg'}" alt="${project.title}">
+            <p>${project.description}</p>
+        `;
+        containerElement.appendChild(article);
+    });
 }
-
 export async function fetchGitHubData(username) {
-  return fetchJSON(`https://api.github.com/users/Kevin-Wu-12`);
-
+  return fetchJSON(`https://api.github.com/users/${username}`);
 }
