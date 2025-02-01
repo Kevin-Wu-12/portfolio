@@ -95,6 +95,54 @@ hr {
   display: flex;
   gap: 0.3rem; /* Adds space between the label and select */
 }
+#profile-stats {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 200px;
+  box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
+  padding: 10px;
+  border-radius: 5px;
+  z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Grid styling */
+.profile-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  text-align: center;
+}
+
+.profile-grid dt {
+  font-weight: bold;
+  grid-row: 1;
+}
+
+.profile-grid dd {
+  margin: 0;
+  grid-row: 2;
+}
+
+
 
 
 
