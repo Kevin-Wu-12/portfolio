@@ -1,14 +1,10 @@
 import { fetchJSON, renderProjects, fetchGitHubData } from './global.js';
 const projects = await fetchJSON('./lib/projects.json');
 
-const basePath = window.location.pathname.includes('portfolio') ? '/portfolio' : '';
-const latestProjects = projects.slice(0, 3).map(project => ({
-    ...project,
-    image: `${basePath}${project.image}`
-}));
+
+const latestProjects = projects.slice(0, 3);
 const projectsContainer = document.querySelector('.projects');
 renderProjects(latestProjects, projectsContainer, 'h2');
-
 
 const githubData = await fetchGitHubData('Kevin-Wu-12');
 const profileStats = document.querySelector('#profile-stats');
