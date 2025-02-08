@@ -151,6 +151,100 @@ hr {
   display: block;
   margin: 0 auto;
 }
+#projects-pie-plot {
+  max-width: 400px; /* Limit width to prevent oversized rendering */
+  height: auto;
+  display: block; /* Ensure it does not auto-center */
+  margin: 2em 0; /* Adjust margins to move it away from the center */
+  overflow: visible;
+}
+
+svg {
+  width: 200px !important; /* Set a fixed width */
+  height: 200px !important; /* Set a fixed height */
+}
+
+.legend {
+  display: flex; 
+  flex-wrap: wrap;
+  justify-content: space-between; 
+  gap: 10px;
+  padding: 10px;
+  margin: 20px auto; 
+  max-width: 100%; 
+  border: 1px solid #ddd; 
+  background: #f9f9f9; 
+  border-radius: 8px; 
+}
+
+.legend li {
+  display: flex;
+  align-items: center; 
+  gap: 8px; 
+  font-size: 14px;
+  padding: 5px 10px;
+}
+
+.legend .swatch {
+  width: 15px;
+  height: 15px;
+  aspect-ratio: 1 / 1;
+  display: inline-block;
+  border-radius: 50%;
+  background-color: var(--color); 
+}
+
+.container {
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  gap: 20px; 
+  max-width: 800px; 
+  margin: 20px auto; 
+}
+.searchBar {
+  width: 100%;
+  max-width: 400px;
+  padding: 12px 16px;
+  font-size: 16px;
+  border: 2px solid #ddd;
+  border-radius: 25px;
+  outline: none;
+  transition: all 0.3s ease-in-out;
+  background-color: #f9f9f9;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+.searchBar:focus {
+  border-color: #0073e6;
+  background-color: #fff;
+
+}
+
+&:has(path:hover) {
+  path:not(:hover) {
+    opacity: 0.5;
+  }
+}
+path {
+  transition: 300ms;
+}
+.selected {
+  --color: oklch(60% 45% 0) !important;
+
+  &:is(path) {
+    fill: var(--color);
+  }
+}
+
+.selected.wedge {
+  fill: var(--color);
+}
+path {
+  cursor: pointer;
+}
+
 
 
 
