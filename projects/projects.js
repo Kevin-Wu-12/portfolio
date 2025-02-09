@@ -26,6 +26,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         projectCount.textContent = "(Error)";
     }
 });
+
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7.9.0/+esm";
 
 let svg = d3.select("svg");
@@ -35,7 +36,6 @@ let searchInput = document.querySelector(".searchBar");
 let projectsContainer = document.querySelector(".projects");
 
 let projects = [];
-let filteredProjects = [];
 let selectedIndex = -1;
 let query = "";
 
@@ -94,7 +94,7 @@ function highlightSelection(paths, legendItems) {
     legendItems.attr("class", (_, i) => (i === selectedIndex ? "selected" : ""));
 }
 
-// Function to filter and update both search & pie chart selection
+// Function to filter projects dynamically based on search and pie selection
 function update() {
     let legendItems = legend.selectAll("li").nodes();
     
@@ -106,7 +106,7 @@ function update() {
     let selectedYear = selectedIndex === -1 || !legendItems[selectedIndex] ? null : legendItems[selectedIndex].textContent.split(" ")[0];
     let queryLower = query.trim().toLowerCase();
 
-    filteredProjects = projects.filter((project) => {
+    let filteredProjects = projects.filter((project) => {
         let matchesYear = selectedYear ? String(project.year) === selectedYear : true;
         let values = Object.values(project).join(" ").toLowerCase();
         let matchesSearch = queryLower ? values.includes(queryLower) : true;
@@ -122,7 +122,6 @@ fetch("../lib/projects.json")
     .then((response) => response.json())
     .then((data) => {
         projects = data;
-        filteredProjects = projects;
         renderProjects(projects, projectsContainer, "h2");
         renderPieChart(projects);
     });
