@@ -89,29 +89,38 @@ function renderPieChart(projectsGiven) {
 }
 
 function highlightSelection(paths, legendItems) {
-    paths.attr("fill", (d, i) => (i === selectedIndex ? "#ff9800" : colors(i)));
+    paths.transition().duration(300).attr("fill", (d, i) => (i === selectedIndex ? "#ff9800" : colors(i)));
+
     legendItems.classed("selected", (_, i) => i === selectedIndex);
+
 }
 
 
+
 function update() {
-    let selectedYear = selectedIndex !== -1 && pieData[selectedIndex] ? pieData[selectedIndex].label : null;
     let queryLower = query.trim().toLowerCase();
+    
+    // Reset selectedIndex when searching
+    if (queryLower) {
+        selectedIndex = -1;
+    }
+
+    let selectedYear = selectedIndex !== -1 && pieData[selectedIndex] ? pieData[selectedIndex].label : null;
 
     let filteredProjects = projects.filter((project) => {
         let matchesYear = selectedYear ? String(project.year) === selectedYear : true;
         let values = Object.values(project).join(" ").toLowerCase();
-        let matchesSearch = queryLower ? values.includes(queryLower) : true;
+        let matchesSearch = queryLower && queryLower.length > 0 ? values.includes(queryLower) : true;
         return matchesYear && matchesSearch;
     });
 
-  
     renderProjects(filteredProjects, projectsContainer, "h2");
-    renderPieChart(filteredProjects); 
+    renderPieChart(filteredProjects);
 }
 
 
 
+// Fetch projects and initialize page
 fetch("../lib/projects.json")
     .then((response) => response.json())
     .then((data) => {
