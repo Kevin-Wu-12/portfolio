@@ -26,7 +26,6 @@ document.addEventListener("DOMContentLoaded", async function () {
         projectCount.textContent = "(Error)";
     }
 });
-
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7.9.0/+esm";
 
 let svg = d3.select("svg");
@@ -38,6 +37,7 @@ let projectsContainer = document.querySelector(".projects");
 let projects = [];
 let selectedIndex = -1;
 let query = "";
+let pieData = []; // Store pie chart data globally
 
 // Function to render the pie chart based on filtered projects
 function renderPieChart(projectsGiven) {
@@ -52,14 +52,14 @@ function renderPieChart(projectsGiven) {
         (d) => d.year
     );
 
-    let chartData = rolledData.map(([year, count]) => ({
+    pieData = rolledData.map(([year, count]) => ({
         value: count,
-        label: year
+        label: String(year)
     }));
 
     let pieGenerator = d3.pie().value((d) => d.value);
     let arcGenerator = d3.arc().innerRadius(0).outerRadius(50);
-    let arcs = pieGenerator(chartData);
+    let arcs = pieGenerator(pieData);
 
     let paths = svg.selectAll("path")
         .data(arcs)
@@ -67,7 +67,7 @@ function renderPieChart(projectsGiven) {
         .append("path")
         .attr("d", arcGenerator)
         .attr("fill", (d, i) => colors(i))
-        .attr("class", (d, i) => (i === selectedIndex ? "wedge selected" : "wedge"))
+        .attr("class", "wedge")
         .style("cursor", "pointer")
         .on("click", function (_, i) {
             selectedIndex = selectedIndex === i ? -1 : i;
@@ -75,7 +75,7 @@ function renderPieChart(projectsGiven) {
         });
 
     let legendItems = legend.selectAll("li")
-        .data(chartData)
+        .data(pieData)
         .enter()
         .append("li")
         .attr("style", (d, i) => `--color:${colors(i)}`)
@@ -90,20 +90,13 @@ function renderPieChart(projectsGiven) {
 
 // Function to highlight the selected pie slice and legend
 function highlightSelection(paths, legendItems) {
-    paths.attr("class", (_, i) => (i === selectedIndex ? "wedge selected" : "wedge"));
-    legendItems.attr("class", (_, i) => (i === selectedIndex ? "selected" : ""));
+    paths.attr("fill", (d, i) => (i === selectedIndex ? "#ff9800" : colors(i)));
+    legendItems.classed("selected", (_, i) => i === selectedIndex);
 }
 
 // Function to filter projects dynamically based on search and pie selection
 function update() {
-    let legendItems = legend.selectAll("li").nodes();
-    
-    // Ensure selectedIndex is valid and reset if it's out of range
-    if (selectedIndex >= legendItems.length) {
-        selectedIndex = -1;
-    }
-
-    let selectedYear = selectedIndex === -1 || !legendItems[selectedIndex] ? null : legendItems[selectedIndex].textContent.split(" ")[0];
+    let selectedYear = selectedIndex !== -1 && pieData[selectedIndex] ? pieData[selectedIndex].label : null;
     let queryLower = query.trim().toLowerCase();
 
     let filteredProjects = projects.filter((project) => {
