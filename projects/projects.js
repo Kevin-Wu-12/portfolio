@@ -37,9 +37,9 @@ let projectsContainer = document.querySelector(".projects");
 let projects = [];
 let selectedIndex = -1;
 let query = "";
-let pieData = []; // Store pie chart data globally
+let pieData = [];
 
-// Function to render the pie chart based on filtered projects
+
 function renderPieChart(projectsGiven) {
     svg.selectAll("*").remove();
     legend.selectAll("*").remove();
@@ -88,13 +88,12 @@ function renderPieChart(projectsGiven) {
     highlightSelection(paths, legendItems);
 }
 
-// Function to highlight the selected pie slice and legend
 function highlightSelection(paths, legendItems) {
     paths.attr("fill", (d, i) => (i === selectedIndex ? "#ff9800" : colors(i)));
     legendItems.classed("selected", (_, i) => i === selectedIndex);
 }
 
-// Function to filter projects dynamically based on search and pie selection
+
 function update() {
     let selectedYear = selectedIndex !== -1 && pieData[selectedIndex] ? pieData[selectedIndex].label : null;
     let queryLower = query.trim().toLowerCase();
@@ -106,11 +105,13 @@ function update() {
         return matchesYear && matchesSearch;
     });
 
+  
     renderProjects(filteredProjects, projectsContainer, "h2");
-    renderPieChart(filteredProjects);
+    renderPieChart(filteredProjects); 
 }
 
-// Fetch projects and initialize page
+
+
 fetch("../lib/projects.json")
     .then((response) => response.json())
     .then((data) => {
