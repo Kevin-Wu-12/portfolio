@@ -67,11 +67,11 @@ function renderPieChart(projectsGiven) {
         .append("path")
         .attr("d", arcGenerator)
         .attr("fill", (d, i) => colors(i))
-        .attr("class", "wedge")
+        .attr("class", (d, i) => (i === selectedIndex ? "wedge selected" : "wedge"))
         .style("cursor", "pointer")
         .on("click", function (_, i) {
             selectedIndex = selectedIndex === i ? -1 : i;
-            update(); // Update projects and chart dynamically
+            update();
         });
 
     let legendItems = legend.selectAll("li")
@@ -116,7 +116,6 @@ function update() {
     renderProjects(filteredProjects, projectsContainer, "h2");
     renderPieChart(filteredProjects);
 }
-
 
 // Fetch projects and initialize page
 fetch("../lib/projects.json")
