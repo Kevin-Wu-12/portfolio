@@ -244,10 +244,6 @@ path {
 path {
   cursor: pointer;
 }
-li.selected {
-  font-weight: bold;
-  text-decoration: underline;
-}
 
 
 
