@@ -24,7 +24,6 @@ body {
     border-bottom-color: oklch(85% 3% 200);
   }
 
-
 }
 :root {
   --color-accent: oklch(65% 50% 0);
@@ -247,6 +246,153 @@ path {
 
 
 
+.tooltip[hidden] {
+  opacity: 0;
+  visibility: hidden;
+}
+
+circle {
+  transition: 200ms;
+  transform-origin: center;
+}
+
+circle:hover {
+  transform: scale(1.5);
+  stroke: black;
+  stroke-width: 1px;
+}
+circle {
+  transition: 200ms;
+  transform-origin: center;
+  transform-box: fill-box;
+}
+
+circle:hover {
+  transform: scale(1.5);
+}
+
+dl.info[hidden]:not(:hover, :focus-within) {
+  opacity: 0;
+  visibility: hidden;
+}
+
+dl.info {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.5em;            
+  transition-duration: 500ms;
+  transition-property: opacity, visibility;      
+}
+
+.tooltip {
+  position: fixed;
+  top: 1em;
+  left: 1em;
+  background-color: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  padding: 10px;
+  backdrop-filter: blur(4px);
+  pointer-events: none;
+}
+
+
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1px;
+  text-align: center; 
+}
+
+.stats dt {
+  font-weight: bold;
+  font-size: 14px;
+  text-transform: uppercase;
+  color: #555;
+  grid-row: 1; 
+  text-align: left;
+}
+
+.stats dd {
+  font-size: 24px;
+  font-weight: bold;
+  color: #000;
+  grid-row: 2;
+  margin: 0;
+  text-align: left;
+}
+
+.gridlines line {
+  stroke: rgba(0, 0, 0, 0.1); 
+}
+
+.selection {
+  fill-opacity: 0.1;
+  stroke: black;
+  stroke-opacity: 0.7;
+  stroke-dasharray: 5 3;
+  animation: marching-ants 2s linear infinite;
+}
+
+@keyframes marching-ants {
+  to {
+    stroke-dashoffset: -8;
+  }
+}
+
+circle.selected {
+  fill: #ff6b6b;
+  stroke: black;
+  stroke-width: 1px;
+}
+
+#selection-count {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin: 100px 0 20px 0;
+}
+
+#language-breakdown {
+  max-width: 400px;
+  margin-top: 5px; 
+  padding: 10px;
+  border: 1px solid #ddd;
+  background: #f9f9f9;
+  border-radius: 8px;
+}
+
+#language-breakdown dt {
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+#language-breakdown dd {
+  font-size: 1.1em;
+  margin: 0;
+  color: #000;
+}
+
+@keyframes marching-ants {
+  to {
+    stroke-dashoffset: -8; /* 5 + 3 */
+  }
+}
+
+.selection {
+  fill-opacity: 0.1;
+  stroke: black;
+  stroke-opacity: 0.7;
+  stroke-dasharray: 5 3;
+  animation: marching-ants 2s linear infinite;
+}
+#commit-tooltip {
+  position: static;
+  margin: 200px auto 0; 
+  max-width: 1000px;
+  border-radius: 5px;
+  padding: 10px;
+}
 
 
 

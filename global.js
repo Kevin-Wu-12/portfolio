@@ -20,6 +20,7 @@ let pages = [
     { url: 'projects/', title: 'Projects' },
     { url: 'resume/', title: 'Resume' },
     { url: 'contact/', title: 'Contact' },
+    { url: 'meta/', title: 'Meta' },
     { url: 'https://github.com/Kevin-Wu-12', title: 'Github Link' }
     // add the rest of your pages here
   ];
@@ -166,3 +167,4 @@ export function renderProjects(projects, containerElement, headingLevel = 'h2') 
 export async function fetchGitHubData(username) {
   return fetchJSON(`https://api.github.com/users/${username}`);
 }
+
