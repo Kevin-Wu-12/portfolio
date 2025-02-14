@@ -285,7 +285,7 @@ dl.info {
 }
 
 .tooltip {
-  position: fixed;
+  position: absolute;
   top: 1em;
   left: 1em;
   background-color: rgba(255, 255, 255, 0.8);
@@ -350,7 +350,7 @@ circle.selected {
 #selection-count {
   font-size: 1.2em;
   font-weight: bold;
-  margin: 100px 0 20px 0;
+  margin: 360px 0 20px 0;
 }
 
 #language-breakdown {
@@ -359,6 +359,10 @@ circle.selected {
   gap: 1rem;            /* spacing between flex items */
   margin: 0;
   padding: 0;
+  padding: 10px;
+  border: 1px solid #ddd;
+  background: #f9f9f9;
+  border-radius: 8px;
 }
 
 #language-breakdown dt {
@@ -389,13 +393,15 @@ circle.selected {
   stroke-dasharray: 5 3;
   animation: marching-ants 2s linear infinite;
 }
+
 #commit-tooltip {
-  position: static;
-  margin: 200px auto 0; 
-  max-width: 1000px;
-  border-radius: 5px;
-  padding: 10px;
+  position: absolute;
+  top: 1em; 
+  left: 1em;  
+
 }
+
+
 
 
 

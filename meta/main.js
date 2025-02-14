@@ -139,7 +139,6 @@ yScale = d3.scaleLinear()
           updateTooltipVisibility(true);
           updateTooltipPosition(event);
       })
-      .on("mousemove", updateTooltipPosition)
       .on("mouseleave", function () {
           d3.select(event.currentTarget).style("fill-opacity", 0.7);
           updateTooltipVisibility(false);
@@ -153,15 +152,18 @@ yScale = d3.scaleLinear()
         svg.append("g")
             .attr("class", "brush")
             .call(brush)
-            .lower(); // Send brush behind dots
+            .lower(); 
     }
 
-    brushSelector(); // ✅ Call brushSelector inside createScatterplot()
+    brushSelector(); 
 }
 
 function updateTooltipContent(commit) {
   const link = document.getElementById('commit-link');
   const date = document.getElementById('commit-date');
+  const author = document.getElementById('commit-author');
+  const lines_edited = document.getElementById('commit-lines');
+  const time = document.getElementById('commit-time');
 
   if (Object.keys(commit).length === 0) return;
 
@@ -170,6 +172,10 @@ function updateTooltipContent(commit) {
   date.textContent = commit.datetime?.toLocaleString('en', {
     dateStyle: 'full',
   });
+  author.textContent = commit.author;
+  lines_edited.textContent = `${commit.totalLines} lines edited`;
+  time.textContent = commit.datetime ? commit.datetime.toString() : '';
+  
 }
 
 function updateTooltipPosition(event) {
@@ -177,6 +183,7 @@ function updateTooltipPosition(event) {
   tooltip.style.left = `${event.clientX}px`;
   tooltip.style.top = `${event.clientY}px`;
 }
+
 function updateTooltipVisibility(isVisible) {
   const tooltip = document.getElementById('commit-tooltip');
   tooltip.hidden = !isVisible;
