@@ -354,20 +354,23 @@ circle.selected {
 }
 
 #language-breakdown {
-  max-width: 400px;
-  margin-top: 5px; 
-  padding: 10px;
-  border: 1px solid #ddd;
-  background: #f9f9f9;
-  border-radius: 8px;
+  display: flex;        /* enables Flexbox */
+  flex-wrap: wrap;      /* items wrap to next line if needed */
+  gap: 1rem;            /* spacing between flex items */
+  margin: 0;
+  padding: 0;
 }
 
 #language-breakdown dt {
+  margin: 0; 
+  display: block;
   font-weight: bold;
   text-transform: uppercase;
 }
 
 #language-breakdown dd {
+  margin: 0; 
+  display: block;
   font-size: 1.1em;
   margin: 0;
   color: #000;
