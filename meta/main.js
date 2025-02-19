@@ -115,15 +115,11 @@ yScale = d3.scaleLinear()
 
   dots = svg.append("g").attr("class", "dots");
 
-
   const [minLines, maxLines] = d3.extent(commits, (d) => d.totalLines);
-
 
   rScale = d3.scaleSqrt().domain([minLines, maxLines]).range([2, 30]);
 
-
   const sortedCommits = d3.sort(commits, (d) => -d.totalLines);
-
 
   dots.selectAll("circle")
       .data(sortedCommits)
@@ -154,7 +150,6 @@ yScale = d3.scaleLinear()
             .call(brush)
             .lower(); 
     }
-
     brushSelector(); 
 }
 
