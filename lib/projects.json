@@ -12,10 +12,11 @@
         "description": "Id enim error perspiciatis et sed doloremque esse corporis inventore animi iure autem ea, aliquid alias sit atque harum sunt magnam vero nesciunt omnis quod nihil ipsam praesentium. Inventore, maxime."
     },
     {
-        "title": "Necessitatibus labore cum velit!",
-        "year": "2019",
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Amet doloribus animi laborum adipisci iusto, assumenda sed tempora ducimus, repudiandae repellat modi consequatur rerum culpa non cupiditate magni expedita. Corrupti porro nulla esse necessitatibus molestiae commodi quidem minus laboriosam."
+        "title": "Boston Bike Traffic Visualization",
+        "year": "2025",
+        "image": "map.png",
+"description": "An interactive app that visualizes bike traffic patterns in Boston using real-time data.",
+"url": "https://kevin-wu-12.github.io/bikewatchingtime/"
     },
     {
         "title": "Sed dicta necessitatibus doloribus!",

@@ -191,8 +191,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 
 const sortedCommits = d3.sort(commits, (d) => -d.totalLines);
-
-
     
     function brushed(event) {
       brushSelection = event.selection;
@@ -219,7 +217,6 @@ function isCommitSelected(commit) {
     // Update visual state of dots based on selection
     d3.selectAll('circle').classed('selected', (d) => isCommitSelected(d));
   }
-
 
   function updateSelectionCount() {
     const selectedCommits = brushSelection
