@@ -172,28 +172,53 @@ function updateScatterplot(filteredCommits) {
   rScale = d3.scaleSqrt().domain([minLines, maxLines]).range([2, 30]);
 
   dots.selectAll("circle")
-   .data(filteredCommits, d => d.id)  // ✅ Only update visible commits
-   .join("circle")
-   .attr("cy", d => yScale(d.hourFrac))
-   .attr("r", d => rScale(d.totalLines)) 
-   .attr("fill", "steelblue")
-   .style("fill-opacity", 0.7)
-   .attr("cx", d3.max(xScale.range()))  
-   .on("mouseenter", function (event, commit) {  
-       d3.select(event.currentTarget).style("fill-opacity", 1); 
-       updateTooltipContent(commit);
-       updateTooltipVisibility(true);
-       updateTooltipPosition(event);
-   })
-   .on("mouseleave", function () {
-       d3.select(event.currentTarget).style("fill-opacity", 0.7);
-       updateTooltipVisibility(false);
-   })
-   .transition()  
-   .duration(150) 
-   .ease(d3.easeLinear) 
-   .attr("cx", d => xScale(d.datetime)); 
+      .data(filteredCommits, d => d.id)
+      .join("circle")
+      .attr("cy", d => yScale(d.hourFrac))
+      .attr("r", d => rScale(d.totalLines))
+      .attr("fill", "steelblue")
+      .style("fill-opacity", 0.7)
+      .attr("cx", d3.max(xScale.range()))
+      .on("mouseenter", function (event, commit) {
+          d3.select(this).style("fill-opacity", 1);
+          console.log("Hovered on commit:", commit.id);  // ✅ Debugging log
+          updateTooltipContent(commit);
+          updateTooltipVisibility(true);
+          updateTooltipPosition(event);
+      })
+      .on("mousemove", function (event) { 
+          updateTooltipPosition(event); // Update position on move
+      })
+      .on("mouseleave", function () {
+          d3.select(this).style("fill-opacity", 0.7);
+          updateTooltipContent({});
+          updateTooltipVisibility(false);
+      })
+      .transition()
+      .duration(150)
+      .ease(d3.easeLinear)
+      .attr("cx", d => xScale(d.datetime));
 }
+
+function updateTooltipPosition(event) {
+  const tooltip = document.getElementById('commit-tooltip');
+  if (!tooltip) return;
+
+  let x = event.clientX + 15; // Add offset to avoid overlap with cursor
+  let y = event.clientY + 15;
+
+  // Prevent tooltip from overflowing the viewport
+  if (x + tooltip.offsetWidth > window.innerWidth) {
+    x = window.innerWidth - tooltip.offsetWidth - 15;
+  }
+  if (y + tooltip.offsetHeight > window.innerHeight) {
+    y = window.innerHeight - tooltip.offsetHeight - 15;
+  }
+
+  tooltip.style.left = `${x}px`;
+  tooltip.style.top = `${y}px`;
+}
+
 
 
 function updateTooltipContent(commit) {
@@ -209,33 +234,34 @@ function updateTooltipContent(commit) {
   date.textContent = commit.datetime?.toLocaleString('en', { dateStyle: 'full' });
   author.textContent = commit.author;
   lines_edited.textContent = `${commit.totalLines} lines edited`;
-}
 
-
-function updateTooltipPosition(event) {
-  const tooltip = d3.select("#commit-tooltip");
-  tooltip.style("left", `${event.pageX + 10}px`)
-         .style("top", `${event.pageY + 10}px`);
 }
 
 
 function updateTooltipVisibility(isVisible) {
-  d3.select("#commit-tooltip").classed("hidden", !isVisible);
+  const tooltip = document.getElementById('commit-tooltip');
+  
+  if (isVisible) {
+    tooltip.classList.add('visible');
+  } else {
+    tooltip.classList.remove('visible');
+  }
 }
+
+
 
 document.addEventListener("DOMContentLoaded", async () => {
   await loadData();
 
   d3.select("#commit-slider").on("input", function() {
-      commitProgress = +this.value;
-      filterCommits();
-      updateScatterplot(filteredCommits);
-
+    commitProgress = +this.value;
+    filterCommits();
+    updateScatterplot(filteredCommits);
   });
 
   updateScatterplot(filteredCommits);
-
 });
+
 
 
 function filterCommits() {
