@@ -6,17 +6,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meta</title>
 
-    
     <link rel="stylesheet" href="../style.css">
 </head>
 
 <body>
     <h1>Meta</h1>
-    
-    <h2>Summary</h2>
+
+    <dl class="files"></dl>
+
     <div id="stats"></div>
-    
+
+<div id="scrollytelling">
+    <div id="scroll-container">
+        <div id="spacer"></div>
+        <div id="items-container"></div>
+    </div>
     <div id="chart"></div>
+</div>
+
+<div id="scrollytelling-files">
+    <div id="scroll-container-files">
+        <div id="spacer-files"></div>
+        <div id="items-container-files"></div>
+    </div>
+    <dl class="files"></dl> <!-- Unit visualization for file sizes -->
+</div>
+
+    <div id="chart-container">
+        <div id="chart"></div>
+    </div>
 
     <dl id="tooltip" hidden>
         <dt>Age</dt>
@@ -24,14 +42,14 @@
         <dt>BMI</dt>
         <dd id="tooltip-bmi"></dd>
     </dl>
-    
+
     <script src="https://d3js.org/d3.v7.min.js"></script>
-
     <script src="../global.js" type="module" defer></script>
-
     <script src="./main.js" type="module" defer></script>
 
 </body>
+
 <p id="selection-count">No commits selected</p>
 <div id="language-breakdown"></div>
+
 </html>
