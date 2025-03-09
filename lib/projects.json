@@ -14,7 +14,7 @@
     {
         "title": "Boston Bike Traffic Visualization",
         "year": "2025",
-        "image": ""/portfolio/images/map.png",
+        "image": "/portfolio/images/map.png",
 "description": "An interactive app that visualizes bike traffic patterns in Boston using real-time data.",
 "url": "https://kevin-wu-12.github.io/bikewatchingtime/"
     },
