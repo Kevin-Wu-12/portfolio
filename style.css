@@ -338,7 +338,8 @@ circle.selected {
 #selection-count {
   font-size: 1.2em;
   font-weight: bold;
-  margin: 360px 0 20px 0;
+  margin-top: 10px; 
+  margin-bottom: 10px;
 }
 
 #language-breakdown {
